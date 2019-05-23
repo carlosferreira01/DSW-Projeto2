@@ -32,18 +32,18 @@
             <div class="form-group">  
                 <h:outputLabel for="autor" class="control-label col-sm-4">Autor</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="autor-id" value="#{livroBean.livro.autor}" class="form-control"   
+                    <h:inputText id="autor-id" value="" class="form-control"   
                                  validatorMessage="Autor é obrigatório">
                         <f:validateRequired/>
                     </h:inputText>  
                 </div>  
             </div>  -->
             <div class="form-group">  
-                <h:outputLabel for="ano" class="control-label col-sm-4">Data</h:outputLabel>  
+                <h:outputLabel for="data" class="control-label col-sm-4">Data</h:outputLabel>  
                 <div class="col-sm-4">  
                     <h:inputText id="data-id" value="#{promocaoBean.promocao.dia}" class="form-control"   
                                    validatorMessage="Data é obrigatório"
-                                   a:type="date" value="2011-08-19">
+                                   a:type="date" h:inputText="2011-08-19">
                         <f:validateRequired/>
                     </h:inputText>  
                 </div>  
