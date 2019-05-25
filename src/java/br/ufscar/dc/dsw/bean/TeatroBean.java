@@ -12,8 +12,11 @@ import javax.faces.bean.SessionScoped;
 public class TeatroBean {
 
     private Teatro teatro;
+    private List<Teatro> teatros;
 
     public String lista() {
+        TeatroDAO dao = new TeatroDAO();
+        teatros = dao.getAll();
         return "teatro/index.xhtml";
     }
 
@@ -35,12 +38,14 @@ public class TeatroBean {
         } else {
             dao.update(teatro);
         }
+        teatros = dao.getAll();
         return "index.xhtml";
     }
 
     public String delete(Teatro teatro) {
         TeatroDAO dao = new TeatroDAO();
         dao.delete(teatro);
+        teatros = dao.getAll();
         return "index.xhtml";
     }
 
@@ -49,8 +54,9 @@ public class TeatroBean {
     }
 
     public List<Teatro> getTeatros() throws SQLException {
-        TeatroDAO dao = new TeatroDAO();
-        return dao.getAll();
+        //TeatroDAO dao = new TeatroDAO();
+        //teatros = dao.getAll();
+        return teatros;  
     }
 
     public Teatro getTeatro() {
@@ -63,5 +69,10 @@ public class TeatroBean {
     public List<String> getCidades() throws SQLException {
         TeatroDAO dao = new TeatroDAO();
         return dao.getCidades();
+    }
+    public String getTeatros(String cidade) throws SQLException {
+        TeatroDAO dao = new TeatroDAO();
+        teatros = dao.getByCity(cidade);
+        return "index.xhtml";
     }
 }
