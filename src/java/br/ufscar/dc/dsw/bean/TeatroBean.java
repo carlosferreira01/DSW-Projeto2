@@ -56,4 +56,12 @@ public class TeatroBean {
     public Teatro getTeatro() {
         return teatro;
     }
+    
+    public String verCidades(){
+        return "cidades.xhtml";
+    }
+    public List<String> getCidades() throws SQLException {
+        TeatroDAO dao = new TeatroDAO();
+        return dao.getCidades();
+    }
 }

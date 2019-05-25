@@ -22,7 +22,7 @@ public class TeatroDAO extends GenericDAO<Teatro>{
     @Override
     public List<Teatro> getAll() {
         EntityManager em = this.getEntityManager();
-        Query q = em.createQuery("select l from Teatro t", Teatro.class);
+        Query q = em.createQuery("select t from Teatro t", Teatro.class);
         List<Teatro> teatros = q.getResultList();
         em.close();
         return teatros;
@@ -71,6 +71,12 @@ public class TeatroDAO extends GenericDAO<Teatro>{
                 + "WHERE s.cidade = :city";
         TypedQuery<Teatro> q = em.createQuery(sql, Teatro.class);
         q.setParameter("city", city);
+        return q.getResultList();
+    }
+    public List<String> getCidades(){
+    EntityManager em = this.getEntityManager();
+        String sql = "SELECT t.cidade FROM Teatro t GROUP BY t.cidade";
+        TypedQuery<String> q = em.createQuery(sql, String.class);
         return q.getResultList();
     }
 }

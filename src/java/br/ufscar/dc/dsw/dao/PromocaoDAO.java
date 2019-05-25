@@ -22,7 +22,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
     @Override
     public List<Promocao> getAll() {
         EntityManager em = this.getEntityManager();
-        Query q = em.createQuery("select l from Promocao p", Promocao.class);
+        Query q = em.createQuery("select p from Promocao p", Promocao.class);
         List<Promocao> promocoes = q.getResultList();
         em.close();
         return promocoes;
