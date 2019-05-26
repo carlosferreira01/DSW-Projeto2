@@ -33,7 +33,12 @@
                 <h:column>  
                     <f:facet name="header">#{msg['site.fone.label']}</f:facet>  
                     <h:outputText value="#{site.telefone}"/>  
-                </h:column> 
+                </h:column>
+                <h:column>  
+                    <f:facet name="header"></f:facet>  
+                    <h:commandButton action = "#{promocaoBean.getPromocoes(site.id)}" value="Ver Promoções" class="btn btn-primary">  
+                    </h:commandButton>  
+                </h:column>
                 <h:column>  
                     <f:facet name="header"></f:facet>  
                     <h:commandButton action = "#{siteBean.edita(site.id)}" value="#{msg['geral.edit.command.label']}" class="btn btn-primary">  

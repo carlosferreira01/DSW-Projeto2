@@ -33,7 +33,12 @@
                 <h:column>  
                     <f:facet name="header">Cidade</f:facet>  
                     <h:outputText value="#{teatro.cidade}"/>  
-                </h:column> 
+                </h:column>
+                <h:column>  
+                    <f:facet name="header"></f:facet>  
+                    <h:commandButton action = "#{promocaoBean.getPromocoesTeatro(teatro.id)}" value="Ver Promoções" class="btn btn-primary">  
+                    </h:commandButton>  
+                </h:column>
                 <h:column>  
                     <f:facet name="header"></f:facet>  
                     <h:commandButton action = "#{teatroBean.edita(teatro.id)}" value="#{msg['geral.edit.command.label']}" class="btn btn-primary">  

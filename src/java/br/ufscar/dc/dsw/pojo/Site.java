@@ -85,7 +85,7 @@ public class Site implements Serializable {
         return promocoes;
     }
 
-    public void setLivros(List<Promocao> promocoes) {
+    public void setPromocoes(List<Promocao> promocoes) {
         this.promocoes = promocoes;
     }
 }

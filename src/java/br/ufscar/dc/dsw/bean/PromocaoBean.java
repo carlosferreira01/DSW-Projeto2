@@ -2,8 +2,11 @@ package br.ufscar.dc.dsw.bean;
 
 import br.ufscar.dc.dsw.dao.PromocaoDAO;
 import br.ufscar.dc.dsw.dao.SiteDAO;
+import br.ufscar.dc.dsw.dao.TeatroDAO;
 import br.ufscar.dc.dsw.pojo.Promocao;
 import br.ufscar.dc.dsw.pojo.Site;
+import br.ufscar.dc.dsw.pojo.Teatro;
+import static com.sun.activation.registries.LogSupport.log;
 import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -14,10 +17,15 @@ import javax.faces.bean.SessionScoped;
 public class PromocaoBean {
 
     private Promocao promocao;
+    private Teatro teatro;
     private Site site;
     private List<Site> sites;
+    private List<Teatro> teatros;
+    private List<Promocao> promocoes;
 
     public String lista() {
+        PromocaoDAO dao = new PromocaoDAO();
+        promocoes = dao.getAll();
         return "promocao/index.xhtml";
     }
 
@@ -39,12 +47,14 @@ public class PromocaoBean {
         } else {
             dao.update(promocao);
         }
+        promocoes = dao.getAll();
         return "index.xhtml";
     }
 
     public String delete(Promocao promocao) {
         PromocaoDAO dao = new PromocaoDAO();
         dao.delete(promocao);
+        promocoes = dao.getAll();
         return "index.xhtml";
     }
 
@@ -53,35 +63,33 @@ public class PromocaoBean {
     }
 
     public List<Promocao> getPromocoes() throws SQLException {
-        PromocaoDAO dao = new PromocaoDAO();
-        return dao.getAll();
+        //PromocaoDAO dao = new PromocaoDAO();
+        //return dao.getAll();
+        return promocoes;
     }
 
     public Promocao getPromocao() {
         return promocao;
     }
-//    public String verTeatros(){
-//        return "teatros.xhtml";
-//    }
-//   public String verSites(){
-//        return "sites.xhtml";
-//    }
-   public List<Site> getSites() throws SQLException {
-        //PromocaoDAO dao = new PromocaoDAO();
-        //return dao.getSites();
+    public List<Site> getSites() throws SQLException {
+        log("get sites");
         SiteDAO dao = new SiteDAO();
         return dao.getAll();
     }
-    public List<String> getTeatros() throws SQLException {
+    public List<Teatro> getTeatros() throws SQLException {
+        log("get teatros");
+        TeatroDAO dao = new TeatroDAO();
+        return dao.getAll();
+    }
+
+    public String getPromocoes(Long id) throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
-        return dao.getTeatros();
+        promocoes = dao.getById(id);
+        return "/promocao/index.xhtml";
     }
-    /*
-    public void setSite(Site site){
-        this.site = site;
+    public String getPromocoesTeatro(Long id) throws SQLException {
+        PromocaoDAO dao = new PromocaoDAO();
+        promocoes = dao.getByTeatro(id);
+        return "/promocao/promocoesteatro.xhtml";
     }
-    public Site getSite(){
-        return site;
-    }*/
-    
 }

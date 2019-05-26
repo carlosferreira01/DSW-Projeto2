@@ -57,21 +57,20 @@ public class PromocaoDAO extends GenericDAO<Promocao> {
         return promocao;
     }
 
-    public List<Promocao> getByCNPJ(String cnpj) {
+    public List<Promocao> getById(Long id) {
         EntityManager em = this.getEntityManager();
-        String sql = "SELECT p FROM Promocao p "
-                + "WHERE p.CNPJ = :cnpj";
+        String sql = "select p from Promocao p where p.site.id = :id";
         TypedQuery<Promocao> q = em.createQuery(sql, Promocao.class);
-        q.setParameter("cnpj", cnpj);
+        q.setParameter("id", id);
         return q.getResultList();
     }
 
     public List<Promocao> getByUrl(String url) {
         EntityManager em = this.getEntityManager();
-        String sql = "SELECT p FROM Promocao p "
-                + "WHERE p.Url = :url";
+        String sql = "SELECT p FROM Promocao p ";
+        //       + "WHERE p.Url = :url";
         TypedQuery<Promocao> q = em.createQuery(sql, Promocao.class);
-        q.setParameter("url", url);
+        // q.setParameter("url", url);
         return q.getResultList();
     }
 
@@ -86,6 +85,14 @@ public class PromocaoDAO extends GenericDAO<Promocao> {
         EntityManager em = this.getEntityManager();
         Query q = em.createQuery("SELECT s FROM Site s", Promocao.class);
         List<Site> sites = q.getResultList();
+        return q.getResultList();
+    }
+
+    public List<Promocao> getByTeatro(Long id) {
+        EntityManager em = this.getEntityManager();
+        String sql = "select p from Promocao p where p.teatro.id = :id";
+        TypedQuery<Promocao> q = em.createQuery(sql, Promocao.class);
+        q.setParameter("id", id);
         return q.getResultList();
     }
 }

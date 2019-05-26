@@ -1,6 +1,8 @@
 package br.ufscar.dc.dsw.bean;
 
+import br.ufscar.dc.dsw.dao.PromocaoDAO;
 import br.ufscar.dc.dsw.dao.SiteDAO;
+import br.ufscar.dc.dsw.pojo.Promocao;
 import br.ufscar.dc.dsw.pojo.Site;
 import java.sql.SQLException;
 import java.util.List;
@@ -12,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 public class SiteBean {
 
     private Site site;
+    private List<Promocao> promocoes;
 
     public String lista() {
         return "site/index.xhtml";

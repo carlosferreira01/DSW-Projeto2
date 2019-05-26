@@ -31,7 +31,7 @@ public class Promocao implements Serializable {
     @ManyToOne 
     private Site site;
     @ManyToOne 
-    private Teatro sala;
+    private Teatro teatro;
 
     public Long getId() {
         return id;
@@ -49,12 +49,12 @@ public class Promocao implements Serializable {
         this.site = site;
     }
 
-    public Teatro getSala() {
-        return sala;
+    public Teatro getTeatro() {
+        return teatro;
     }
 
-    public void setSala(Teatro sala) {
-        this.sala = sala;
+    public void setTeatro(Teatro teatro) {
+        this.teatro = teatro;
     }
 
     public String getNome() {
