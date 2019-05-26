@@ -1,14 +1,15 @@
 package br.ufscar.dc.dsw.dao;
 
 import br.ufscar.dc.dsw.pojo.Promocao;
+import br.ufscar.dc.dsw.pojo.Site;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-public class PromocaoDAO extends GenericDAO<Promocao>{
-    
+public class PromocaoDAO extends GenericDAO<Promocao> {
+
     @Override
     public void save(Promocao promocao) {
         EntityManager em = this.getEntityManager();
@@ -18,7 +19,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         tx.commit();
         em.close();
     }
-    
+
     @Override
     public List<Promocao> getAll() {
         EntityManager em = this.getEntityManager();
@@ -37,7 +38,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         em.remove(promocao);
         tx.commit();
     }
-    
+
     @Override
     public void update(Promocao promocao) {
         EntityManager em = this.getEntityManager();
@@ -55,7 +56,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         em.close();
         return promocao;
     }
-    
+
     public List<Promocao> getByCNPJ(String cnpj) {
         EntityManager em = this.getEntityManager();
         String sql = "SELECT p FROM Promocao p "
@@ -64,13 +65,27 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         q.setParameter("cnpj", cnpj);
         return q.getResultList();
     }
-    
+
     public List<Promocao> getByUrl(String url) {
         EntityManager em = this.getEntityManager();
         String sql = "SELECT p FROM Promocao p "
                 + "WHERE p.Url = :url";
         TypedQuery<Promocao> q = em.createQuery(sql, Promocao.class);
         q.setParameter("url", url);
+        return q.getResultList();
+    }
+
+    public List<String> getTeatros() {
+        EntityManager em = this.getEntityManager();
+        String sql = "SELECT t.nome FROM Teatro t JOIN Promocao p ON p.sala_id = t.id;";
+        TypedQuery<String> q = em.createQuery(sql, String.class);
+        return q.getResultList();
+    }
+
+    public List<Site> getSites() {
+        EntityManager em = this.getEntityManager();
+        Query q = em.createQuery("SELECT s FROM Site s", Promocao.class);
+        List<Site> sites = q.getResultList();
         return q.getResultList();
     }
 }

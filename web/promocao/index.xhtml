@@ -32,8 +32,14 @@
                 </h:column> 
                 <h:column>  
                     <f:facet name="header">Data</f:facet>  
-                    <h:outputText value="#{promocao.dia}"/>  
-                </h:column> 
+                    <h:outputText value="#{promocao.dia}">
+                    <f:convertDateTime type="date" dateStyle="full" />
+                    </h:outputText>
+                </h:column>
+                <h:column>  
+                    <f:facet name="header">Site</f:facet>  
+                    <h:outputText value="#{promocao.site}"/>  
+                </h:column>
                 <h:column>  
                     <f:facet name="header"></f:facet>  
                     <h:commandButton action = "#{promocaoBean.edita(promocao.id)}" value="Edição" class="btn btn-primary">  
@@ -56,6 +62,12 @@
                 <h:commandButton action = "#{promocaoBean.volta()}"   
                                  value="Menu Principal" class="btn btn-success"></h:commandButton>
             </center>
+            <br/>
+            <center>
+                <h:commandButton action = "#{promocaoBean.verTeatros()}"   
+                                 value="Buscar por Teatro" class="btn btn-primary"></h:commandButton>
+            </center>
+            <br/>
         </h:form>  
     </h:body>  
 </html>

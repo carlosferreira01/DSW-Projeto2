@@ -75,8 +75,8 @@ public class TeatroDAO extends GenericDAO<Teatro>{
     }
     public List<String> getCidades(){
     EntityManager em = this.getEntityManager();
-        String sql = "SELECT t.cidade FROM Teatro t GROUP BY t.cidade";
-        TypedQuery<String> q = em.createQuery(sql, String.class);
-        return q.getResultList();
+    String sql = "SELECT t.cidade FROM Teatro t GROUP BY t.cidade";
+    TypedQuery<String> q = em.createQuery(sql, String.class);
+    return q.getResultList();
     }
 }

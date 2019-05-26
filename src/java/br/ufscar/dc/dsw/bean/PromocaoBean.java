@@ -1,7 +1,9 @@
 package br.ufscar.dc.dsw.bean;
 
 import br.ufscar.dc.dsw.dao.PromocaoDAO;
+import br.ufscar.dc.dsw.dao.SiteDAO;
 import br.ufscar.dc.dsw.pojo.Promocao;
+import br.ufscar.dc.dsw.pojo.Site;
 import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -12,6 +14,8 @@ import javax.faces.bean.SessionScoped;
 public class PromocaoBean {
 
     private Promocao promocao;
+    private Site site;
+    private List<Site> sites;
 
     public String lista() {
         return "promocao/index.xhtml";
@@ -56,4 +60,28 @@ public class PromocaoBean {
     public Promocao getPromocao() {
         return promocao;
     }
+//    public String verTeatros(){
+//        return "teatros.xhtml";
+//    }
+//   public String verSites(){
+//        return "sites.xhtml";
+//    }
+   public List<Site> getSites() throws SQLException {
+        //PromocaoDAO dao = new PromocaoDAO();
+        //return dao.getSites();
+        SiteDAO dao = new SiteDAO();
+        return dao.getAll();
+    }
+    public List<String> getTeatros() throws SQLException {
+        PromocaoDAO dao = new PromocaoDAO();
+        return dao.getTeatros();
+    }
+    /*
+    public void setSite(Site site){
+        this.site = site;
+    }
+    public Site getSite(){
+        return site;
+    }*/
+    
 }

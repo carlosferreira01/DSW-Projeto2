@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -23,10 +25,13 @@ public class Promocao implements Serializable {
     
     private String nome;
     private Float preco;
+    @Temporal(value = TemporalType.DATE)
     private Date dia;
     
-    @ManyToOne @JoinColumn private Site site;
-    @ManyToOne @JoinColumn private Teatro sala;
+    @ManyToOne 
+    private Site site;
+    @ManyToOne 
+    private Teatro sala;
 
     public Long getId() {
         return id;
