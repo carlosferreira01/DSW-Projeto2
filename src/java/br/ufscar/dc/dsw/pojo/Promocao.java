@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Promocao implements Serializable {
     
     private String nome;
     private Float preco;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dia;
     
     @ManyToOne @JoinColumn private Site site;

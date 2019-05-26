@@ -2,6 +2,7 @@ package br.ufscar.dc.dsw.bean;
 
 import br.ufscar.dc.dsw.dao.TeatroDAO;
 import br.ufscar.dc.dsw.pojo.Teatro;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -9,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class TeatroBean {
+public class TeatroBean implements Serializable {
 
     private Teatro teatro;
 

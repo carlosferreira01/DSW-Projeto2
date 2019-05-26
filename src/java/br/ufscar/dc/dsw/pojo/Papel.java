@@ -1,26 +1,26 @@
-
 package br.ufscar.dc.dsw.pojo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;;
+import javax.persistence.ManyToMany;
 
-/**
- *
- * @author carlos
- */
-@Entity 
+@Entity
+@Cacheable(value = false)
 public class Papel implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;    
+    private String nome;
     
-    @OneToOne @JoinColumn private Usuario usuario;
+    @ManyToMany(mappedBy = "papel")
+    private List<Usuario> usuario;
 
     public Long getId() {
         return id;
@@ -30,13 +30,19 @@ public class Papel implements Serializable {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Usuario> getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(List<Usuario> usuario) {
         this.usuario = usuario;
     }
-    
-    
 }

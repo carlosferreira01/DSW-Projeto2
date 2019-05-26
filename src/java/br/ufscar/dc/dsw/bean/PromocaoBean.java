@@ -2,6 +2,7 @@ package br.ufscar.dc.dsw.bean;
 
 import br.ufscar.dc.dsw.dao.PromocaoDAO;
 import br.ufscar.dc.dsw.pojo.Promocao;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -9,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class PromocaoBean {
+public class PromocaoBean implements Serializable{
 
     private Promocao promocao;
 
