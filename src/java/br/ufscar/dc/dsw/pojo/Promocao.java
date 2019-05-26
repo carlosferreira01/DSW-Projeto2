@@ -2,6 +2,11 @@ package br.ufscar.dc.dsw.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.sql.Time;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,6 +32,15 @@ public class Promocao implements Serializable {
     private Float preco;
     @Temporal(value = TemporalType.DATE)
     private Date dia;
+    private String horario;
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
     
     @ManyToOne 
     private Site site;

@@ -22,6 +22,7 @@ public class PromocaoBean {
     private List<Site> sites;
     private List<Teatro> teatros;
     private List<Promocao> promocoes;
+    private String erro ="";
 
     public String lista() {
         PromocaoDAO dao = new PromocaoDAO();
@@ -42,6 +43,15 @@ public class PromocaoBean {
 
     public String salva() {
         PromocaoDAO dao = new PromocaoDAO();
+        promocoes = dao.getAll();
+        for (Promocao promos : promocoes) {
+            if ((promos.getSite().equals(promocao.getSite()))|| (promos.getTeatro().equals(promocao.getTeatro()))) {
+                if ((promos.getDia().equals(promocao.getDia()))&& (promos.getHorario().equals(promocao.getHorario()))){
+                    erro = "Error!";
+                    return "form.xhtml";
+                }
+            }
+        }
         if (promocao.getId() == null) {
             dao.save(promocao);
         } else {

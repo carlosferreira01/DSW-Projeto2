@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  
       xmlns:h="http://xmlns.jcp.org/jsf/html"  
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">  
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">  
     <h:head>  
         <title>Formulário: Site</title>
         <link rel="stylesheet" 
@@ -41,10 +42,13 @@
                         <div class="form-group">  
                 <h:outputLabel for="telefone" class="control-label col-sm-4">Telefone</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="telefone-id" value="#{siteBean.site.telefone}" class="form-control"   
+                    <!--<h:inputText id="telefone-id" value="#{siteBean.site.telefone}" class="form-control"   
                                  validatorMessage="Telefone é obrigatório">
                         <f:validateRequired/>
-                    </h:inputText>  
+                    </h:inputText>-->
+                    <p:inputMask id="telefone" value="#{siteBean.site.telefone}" class="form-control"   
+                                     mask="(99)99999-9999"
+                                     validatorMessage="Telefone é obrigatório"/>
                 </div>  
             </div>                             
             <div class="form-group">  
