@@ -2,31 +2,41 @@ package br.ufscar.dc.dsw.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.sql.Time;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author carlos
  */
-
 @Entity
 public class Promocao implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String nome;
     private Float preco;
+    @Temporal(value = TemporalType.DATE)
     private Date dia;
-    
-    @ManyToOne @JoinColumn private Site site;
-    @ManyToOne @JoinColumn private Teatro sala;
+    private String horario;
+
+    @ManyToOne
+    private Site site;
+    @ManyToOne
+    private Teatro teatro;
 
     public Long getId() {
         return id;
@@ -36,7 +46,7 @@ public class Promocao implements Serializable {
         this.id = id;
     }
 
-     public Site getSite() {
+    public Site getSite() {
         return site;
     }
 
@@ -44,12 +54,12 @@ public class Promocao implements Serializable {
         this.site = site;
     }
 
-    public Teatro getSala() {
-        return sala;
+    public Teatro getTeatro() {
+        return teatro;
     }
 
-    public void setSala(Teatro sala) {
-        this.sala = sala;
+    public void setTeatro(Teatro teatro) {
+        this.teatro = teatro;
     }
 
     public String getNome() {
@@ -75,5 +85,13 @@ public class Promocao implements Serializable {
     public void setDia(Date dia) {
         this.dia = dia;
     }
-    
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
 }
