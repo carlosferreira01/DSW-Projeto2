@@ -2,6 +2,8 @@ package br.ufscar.dc.dsw.dao;
 
 import br.ufscar.dc.dsw.pojo.Papel;
 import br.ufscar.dc.dsw.pojo.Usuario;
+import br.ufscar.dc.dsw.pojo.Site;
+import br.ufscar.dc.dsw.pojo.Teatro;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class CriaUsuarios {
@@ -28,7 +30,7 @@ public class CriaUsuarios {
         u1.getPapel().add(p1);
         usuarioDAO.update(u1);
 
-        // Criando Usuario user com papel ROLE_USER
+        // Criando usario
         
         Usuario u2 = new Usuario();
         u2.setEmail("user@user");
