@@ -1,18 +1,25 @@
 package br.ufscar.dc.dsw.bean;
 
+import br.ufscar.dc.dsw.dao.PapelDAO;
+import br.ufscar.dc.dsw.dao.PromocaoDAO;
 import br.ufscar.dc.dsw.dao.SiteDAO;
+import br.ufscar.dc.dsw.pojo.Papel;
+import br.ufscar.dc.dsw.pojo.Promocao;
 import br.ufscar.dc.dsw.pojo.Site;
-import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @ManagedBean
 @SessionScoped
-public class SiteBean implements Serializable{
+public class SiteBean implements Serializable {
 
     private Site site;
+    private List<Promocao> promocoes;
+    private static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public String lista() {
         return "site/index.xhtml";
@@ -31,8 +38,16 @@ public class SiteBean implements Serializable{
 
     public String salva() {
         SiteDAO dao = new SiteDAO();
+        PapelDAO papelDAO = new PapelDAO();
         if (site.getId() == null) {
+            site.setSenha(encoder.encode(site.getSenha()));
+            site.setAtivo(true);
             dao.save(site);
+            
+            Papel p4 = new Papel();
+            p4.setNome("ROLE_SITE");
+            site.getPapel().add(p4);
+            dao.update(site);
         } else {
             dao.update(site);
         }

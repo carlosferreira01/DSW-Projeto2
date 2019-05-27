@@ -28,7 +28,8 @@
                         <f:validateRequired/>
                     </h:inputText>  
                 </div>  
-            </div> <!-- 
+            </div> 
+            <!-- 
             <div class="form-group">  
                 <h:outputLabel for="autor" class="control-label col-sm-4">Autor</h:outputLabel>  
                 <div class="col-sm-4">  
@@ -40,14 +41,28 @@
             </div>  -->
             <div class="form-group">  
                 <h:outputLabel for="data" class="control-label col-sm-4">Data</h:outputLabel>  
-                <div class="col-sm-4">  
+                <div class="col-sm-4">
                     <h:inputText id="data-id" value="#{promocaoBean.promocao.dia}" class="form-control"   
-                                   validatorMessage="Data é obrigatório"
-                                   a:type="date" h:inputText="2011-08-19">
+                                   validatorMessage="Data é obrigatório">
+                        <f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+                    <f:passThroughAttribute name="type" value="date"/>
                         <f:validateRequired/>
                     </h:inputText>  
                 </div>  
             </div>
+            
+            <div class="form-group">  
+                <h:outputLabel for="horario" class="control-label col-sm-4">Horario</h:outputLabel>  
+                <div class="col-sm-4">
+                    <h:inputText id="horario-id" value="#{promocaoBean.promocao.horario}" class="form-control"   
+                                   validatorMessage="Horario é obrigatório">
+                    <f:passThroughAttribute name="type" value="time"/>
+                        <f:validateRequired/>
+                    </h:inputText>
+                    
+                </div>  
+            </div>
+            
             <div class="form-group">  
                 <h:outputLabel for="preco" class="control-label col-sm-4">Preço</h:outputLabel>  
                 <div class="col-sm-4">  
@@ -58,7 +73,28 @@
                     </h:inputText>  
                 </div>  
             </div> <!-- 2x0 -->
-                 
+            
+            <div class="form-group">  
+                <h:outputLabel for="site" class="control-label col-sm-4">Site</h:outputLabel>  
+                <div class="col-sm-4">
+                    <h:selectOneMenu id="site" value="#{promocaoBean.promocao.site}">
+                        <f:selectItems value="#{promocaoBean.sites}"/>
+                        <f:converter converterId="SiteConverter" />
+                    </h:selectOneMenu>
+                </div>  
+            </div>
+            
+            <div class="form-group">  
+                <h:outputLabel for="teatro" class="control-label col-sm-4">Teatro</h:outputLabel>  
+                <div class="col-sm-4">
+                    <h:selectOneMenu id="teatro" value="#{promocaoBean.promocao.teatro}">
+                        <f:selectItems value="#{promocaoBean.teatros}"/>
+                        <f:converter converterId="TeatroConverter" />
+                    </h:selectOneMenu>
+                </div>  
+            </div>
+            
+            <br/>             
             <div class="form-group">  
                 <div class="col-sm-4"></div>  
                 <div class="col-sm-4">  

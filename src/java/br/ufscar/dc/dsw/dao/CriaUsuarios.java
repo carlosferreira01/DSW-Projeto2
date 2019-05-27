@@ -14,6 +14,8 @@ public class CriaUsuarios {
 
         PapelDAO papelDAO = new PapelDAO();
         UsuarioDAO usuarioDAO = new UsuarioDAO();
+        TeatroDAO teatroDAO = new TeatroDAO();
+        SiteDAO siteDAO = new SiteDAO();
 
         // Criando Usuario admin com papel ROLE_ADMIN
      
@@ -44,5 +46,41 @@ public class CriaUsuarios {
 
         u2.getPapel().add(p2);
         usuarioDAO.update(u2);
+        
+        //teatro pra teste
+        
+        Teatro t = new Teatro();
+        t.setNome("TeatroA");
+        t.setCNPJ("11111111");
+        t.setCidade("São carlos");
+        t.setEmail("teatro@teatro");
+        t.setSenha(encoder.encode("teatro"));
+        t.setAtivo(true);
+        teatroDAO.save(t);
+
+        Papel p3 = new Papel();
+        p3.setNome("ROLE_TEATRO");
+        papelDAO.save(p3);
+
+        t.getPapel().add(p3);
+        teatroDAO.update(t);
+        
+        //site pra teste
+        
+        Site s = new Site();
+        s.setNome("Site1");
+        s.setUrl("aaaaa");
+        s.setTelefone("32123132");
+        s.setEmail("site@site");
+        s.setSenha(encoder.encode("site"));
+        s.setAtivo(true);
+        siteDAO.save(s);
+
+        Papel p4 = new Papel();
+        p4.setNome("ROLE_SITE");
+        papelDAO.save(p4);
+
+        s.getPapel().add(p4);
+        siteDAO.update(s);
     }
 }

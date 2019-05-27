@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:sec="http://www.springframework.org/security/tags">  
     <h:head>  
-        <title>#{msg['teatro.list.page.title']}</title>
+        <title>Lista de Promocao</title>
         <link rel="stylesheet" 
               href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
               integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
@@ -15,61 +15,60 @@
     <h:body>  
         <h:form>  
             <center>  
-                <h2><h:outputText value="#{msg['teatro.list.page.title']}"/></h2>  
+                <h2><h:outputText value="Lista de Promocao"/></h2>  
             </center>  
-            <h:dataTable value="#{teatroBean.teatros}" var="teatro"   
+            <h:dataTable value="#{promocaoBean.promocoes}" var="promocao"   
                          class="table table-striped table-hover table-bordered">  
                 <h:column>  
-                    <f:facet name="header">#{msg['teatro.id.label']}</f:facet>  
-                    <h:outputText value="#{teatro.id}"/>  
+                    <f:facet name="header">ID</f:facet>  
+                    <h:outputText value="#{promocao.id}"/>  
                 </h:column>  
                 <h:column>  
-                    <f:facet name="header">#{msg['teatro.name.label']}</f:facet>  
-                    <h:outputText value="#{teatro.nome}"/>  
+                    <f:facet name="header">Nome</f:facet>  
+                    <h:outputText value="#{promocao.nome}"/>  
                 </h:column>    
                 <h:column>  
-                    <f:facet name="header">#{msg['teatro.cnpj.label']}</f:facet>  
-                    <h:outputText value="#{teatro.CNPJ}"/>  
+                    <f:facet name="header">Preço</f:facet>  
+                    <h:outputText value="#{promocao.preco}"/>  
                 </h:column> 
                 <h:column>  
-                    <f:facet name="header">Cidade</f:facet>  
-                    <h:outputText value="#{teatro.cidade}"/>  
+                    <f:facet name="header">Data</f:facet>  
+                    <h:outputText value="#{promocao.dia}">
+                        <f:convertDateTime type="date" dateStyle="full" />
+                    </h:outputText>
                 </h:column>
                 <h:column>  
-                    <f:facet name="header"></f:facet>  
-                    <h:commandButton action = "#{promocaoBean.getPromocoesTeatro(teatro.id)}" value="Ver Promoções" class="btn btn-primary">  
-                    </h:commandButton>  
+                    <f:facet name="header">Site</f:facet>  
+                    <h:outputText value="#{promocao.site}"/>  
                 </h:column>
                 <h:column>  
                     <sec:authorize ifAllGranted="ROLE_ADMIN">
                         <f:facet name="header"></f:facet>  
-                        <h:commandButton action = "#{teatroBean.edita(teatro.id)}" value="#{msg['geral.edit.command.label']}" class="btn btn-primary">  
+                        <h:commandButton action = "#{promocaoBean.edita(promocao.id)}" value="Edição" class="btn btn-primary">  
                         </h:commandButton>  
                     </sec:authorize>
                 </h:column>  
                 <h:column>  
                     <sec:authorize ifAllGranted="ROLE_ADMIN">
                         <f:facet name="header"></f:facet>  
-                        <h:commandButton action = "#{teatroBean.delete(teatro)}" value="#{msg['geral.delete.command.label']}" 
+                        <h:commandButton action = "#{promocaoBean.delete(promocao)}" value="Remoção" 
                                          onclick="return confirm('Tem certeza de que deseja excluir este item?');"
                                          class="btn btn-danger">  
                         </h:commandButton>  
                     </sec:authorize>
                 </h:column>  
             </h:dataTable>
+            <br/>
             <center>
-                <sec:authorize ifAllGranted="ROLE_ADMIN">
-                    <h:commandButton action = "#{teatroBean.cadastra()}"   
-                                     value="#{msg['teatro.create.command.label']}" class="btn btn-primary"></h:commandButton>
-                </sec:authorize>
+                <h:commandButton action = "#{promocaoBean.volta()}"   
+                                 value="Menu Principal" class="btn btn-success"></h:commandButton>
             </center>
             <br/>
             <center>
-                <h:commandButton action = "#{teatroBean.volta()}"   
-                                 value="#{msg['root.back.label']}" class="btn btn-success"></h:commandButton>
+                <h:commandButton action = "#{promocaoBean.verTeatros()}"   
+                                 value="Buscar por Teatro" class="btn btn-primary"></h:commandButton>
             </center>
             <br/>
         </h:form>  
     </h:body>  
 </html>
-

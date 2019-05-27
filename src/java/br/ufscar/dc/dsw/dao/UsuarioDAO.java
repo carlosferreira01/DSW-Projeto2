@@ -1,5 +1,6 @@
 package br.ufscar.dc.dsw.dao;
 
+import br.ufscar.dc.dsw.pojo.Teatro;
 import br.ufscar.dc.dsw.pojo.Usuario;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -53,5 +54,9 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
         Usuario usuario = em.find(Usuario.class, id);
         em.close();
         return usuario;
+    }
+
+    void save(Teatro t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
