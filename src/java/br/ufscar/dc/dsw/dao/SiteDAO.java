@@ -22,7 +22,7 @@ public class SiteDAO extends GenericDAO<Site>{
     @Override
     public List<Site> getAll() {
         EntityManager em = this.getEntityManager();
-        Query q = em.createQuery("select l from Site s", Site.class);
+        Query q = em.createQuery("select s from Site s", Site.class);
         List<Site> sites = q.getResultList();
         em.close();
         return sites;

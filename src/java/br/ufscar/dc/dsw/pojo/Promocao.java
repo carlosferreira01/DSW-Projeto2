@@ -2,6 +2,11 @@ package br.ufscar.dc.dsw.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.sql.Time;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -24,11 +30,22 @@ public class Promocao implements Serializable {
     
     private String nome;
     private Float preco;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(value = TemporalType.DATE)
     private Date dia;
+    private String horario;
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
     
-    @ManyToOne @JoinColumn private Site site;
-    @ManyToOne @JoinColumn private Teatro sala;
+    @ManyToOne 
+    private Site site;
+    @ManyToOne 
+    private Teatro teatro;
 
     public Long getId() {
         return id;
@@ -46,12 +63,12 @@ public class Promocao implements Serializable {
         this.site = site;
     }
 
-    public Teatro getSala() {
-        return sala;
+    public Teatro getTeatro() {
+        return teatro;
     }
 
-    public void setSala(Teatro sala) {
-        this.sala = sala;
+    public void setTeatro(Teatro teatro) {
+        this.teatro = teatro;
     }
 
     public String getNome() {

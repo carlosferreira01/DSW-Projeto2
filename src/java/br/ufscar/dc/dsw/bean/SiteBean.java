@@ -1,18 +1,21 @@
 package br.ufscar.dc.dsw.bean;
 
+import br.ufscar.dc.dsw.dao.PromocaoDAO;
 import br.ufscar.dc.dsw.dao.SiteDAO;
+import br.ufscar.dc.dsw.pojo.Promocao;
 import br.ufscar.dc.dsw.pojo.Site;
-import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
 
 @ManagedBean
 @SessionScoped
 public class SiteBean implements Serializable{
 
     private Site site;
+    private List<Promocao> promocoes;
 
     public String lista() {
         return "site/index.xhtml";

@@ -2,7 +2,9 @@ package br.ufscar.dc.dsw.pojo;
 
 import java.io.Serializable;
 import java.util.Set;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +24,8 @@ public class Teatro implements Serializable {
     private String CNPJ;
     private String cidade;
     @OneToOne @JoinColumn private Usuario usuario;
-    @OneToMany (mappedBy = "sala") private Set<Promocao> promocoes;
+    @OneToMany (mappedBy = "teatro", fetch = FetchType.LAZY) 
+    private List<Promocao> promocoes;
 
     public String getNome() {
         return nome;
@@ -66,11 +69,11 @@ public class Teatro implements Serializable {
         this.usuario = usuario;
     }
 
-    public Set<Promocao> getPromocoes() {
+    public List<Promocao> getPromocoes() {
         return promocoes;
     }
 
-    public void setPromocoes(Set<Promocao> promocoes) {
+    public void setPromocoes(List<Promocao> promocoes) {
         this.promocoes = promocoes;
     }
     
@@ -78,5 +81,14 @@ public class Teatro implements Serializable {
     public String toString(){
         return CNPJ;
     }
-
+    public boolean equals(Object obj) {
+        if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (!(obj instanceof Teatro))
+		return false;
+	Teatro other = (Teatro) obj;
+	return other.nome.equals(this.nome);
+    }
 }

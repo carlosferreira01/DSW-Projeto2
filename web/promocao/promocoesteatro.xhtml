@@ -2,8 +2,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
 <html xmlns="http://www.w3.org/1999/xhtml"  
       xmlns:h="http://xmlns.jcp.org/jsf/html"  
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:sec="http://www.springframework.org/security/tags">  
+      xmlns:f="http://xmlns.jcp.org/jsf/core">  
     <h:head>  
         <title>Lista de Promocao</title>
         <link rel="stylesheet" 
@@ -34,13 +33,7 @@
                 <h:column>  
                     <f:facet name="header">Data</f:facet>  
                     <h:outputText value="#{promocao.dia}">
-                        <f:convertDateTime type="date" dateStyle="full" />
-                    </h:outputText>
-                </h:column>
-                <h:column>  
-                    <f:facet name="header">Horario</f:facet>  
-                    <h:outputText value="#{promocao.horario}">
-                        <f:convertDateTime type="time" dateStyle="short" />
+                    <f:convertDateTime type="date" dateStyle="full" />
                     </h:outputText>
                 </h:column>
                 <h:column>  
@@ -48,36 +41,31 @@
                     <h:outputText value="#{promocao.site}"/>  
                 </h:column>
                 <h:column>  
-                    <f:facet name="header">Teatro</f:facet>  
-                    <h:outputText value="#{promocao.teatro}"/>  
-                </h:column>
-                <h:column>  
-                    <sec:authorize ifAllGranted="ROLE_ADMIN">
-                        <f:facet name="header"></f:facet>  
-                        <h:commandButton action = "#{promocaoBean.edita(promocao.id)}" value="Edição" class="btn btn-primary">  
-                        </h:commandButton>  
-                    </sec:authorize>
+                    <f:facet name="header"></f:facet>  
+                    <h:commandButton action = "#{promocaoBean.edita(promocao.id)}" value="Edição" class="btn btn-primary">  
+                    </h:commandButton>  
                 </h:column>  
                 <h:column>  
-                    <sec:authorize ifAllGranted="ROLE_ADMIN">
-                        <f:facet name="header"></f:facet>  
-                        <h:commandButton action = "#{promocaoBean.delete(promocao)}" value="Remoção" 
-                                         onclick="return confirm('Tem certeza de que deseja excluir este item?');"
-                                         class="btn btn-danger">  
-                        </h:commandButton> 
-                    </sec:authorize>
+                    <f:facet name="header"></f:facet>  
+                    <h:commandButton action = "#{promocaoBean.delete(promocao)}" value="Remoção" 
+                                     onclick="return confirm('Tem certeza de que deseja excluir este item?');"
+                                     class="btn btn-danger">  
+                    </h:commandButton>  
                 </h:column>  
             </h:dataTable>
             <center>
-                <sec:authorize ifAllGranted="ROLE_TEATRO">
-                    <h:commandButton action = "#{promocaoBean.cadastra()}"   
-                                     value="Cadastre Nova Promoção" class="btn btn-primary"></h:commandButton>
-                </sec:authorize>
+                <h:commandButton action = "#{promocaoBean.cadastra()}"   
+                                 value="Cadastre Nova Promoção" class="btn btn-primary"></h:commandButton>
             </center>
             <br/>
             <center>
                 <h:commandButton action = "#{promocaoBean.volta()}"   
                                  value="Menu Principal" class="btn btn-success"></h:commandButton>
+            </center>
+            <br/>
+            <center>
+                <h:commandButton action = "#{promocaoBean.verTeatros()}"   
+                                 value="Buscar por Teatro" class="btn btn-primary"></h:commandButton>
             </center>
             <br/>
         </h:form>  
