@@ -1,67 +1,58 @@
 package br.ufscar.dc.dsw.dao;
 
-import br.ufscar.dc.dsw.pojo.Site;
+import br.ufscar.dc.dsw.pojo.Papel;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-public class SiteDAO extends GenericDAO<Site>{
+public class PapelDAO extends GenericDAO<Papel>{
     
     @Override
-    public void save(Site site) {
+    public void save(Papel papel) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
-        em.persist(site);
+        em.persist(papel);
         tx.commit();
         em.close();
     }
     
     @Override
-    public List<Site> getAll() {
+    public List<Papel> getAll() {
         EntityManager em = this.getEntityManager();
-        Query q = em.createQuery("select s from Site s", Site.class);
-        List<Site> sites = q.getResultList();
+        Query q = em.createQuery("select p from Papel p", Papel.class);
+        List<Papel> papeis = q.getResultList();
         em.close();
-        return sites;
+        return papeis;
     }
 
     @Override
-    public void delete(Site site) {
+    public void delete(Papel papel) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        site = em.getReference(Site.class, site.getId());
+        papel = em.getReference(Papel.class, papel.getId());
         tx.begin();
-        em.remove(site);
+        em.remove(papel);
         tx.commit();
     }
     
     @Override
-    public void update(Site site) {
+    public void update(Papel papel) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
-        em.merge(site);
+        em.merge(papel);
         tx.commit();
         em.close();
     }
 
     @Override
-    public Site get(Long id) {
+    public Papel get(Long id) {
         EntityManager em = this.getEntityManager();
-        Site site = em.find(Site.class, id);
+        Papel papel = em.find(Papel.class, id);
         em.close();
-        return site;
-    }
-    
-     public Site getByUrl(String url) {
-        EntityManager em = this.getEntityManager();
-        String sql = "SELECT s FROM Site s "
-                + "WHERE s.url = :url";
-        TypedQuery<Site> q = em.createQuery(sql, Site.class);
-        q.setParameter("url", url);
-        return q.getSingleResult();
+        return papel;
     }
 }
