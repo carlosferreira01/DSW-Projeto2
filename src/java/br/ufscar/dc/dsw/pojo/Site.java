@@ -18,26 +18,15 @@ import javax.persistence.OneToOne;
 @Entity
 public class Site extends Usuario implements Serializable {
 
-    
-    @Id
-    //@GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+
 
     private String nome;
     private String url;
     private String telefone;
-    //@OneToOne @JoinColumn private Usuario usuario;
+    @OneToOne @JoinColumn private Usuario usuario;
     
     @OneToMany(mappedBy = "site", fetch = FetchType.LAZY)
     private List<Promocao> promocoes;
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
