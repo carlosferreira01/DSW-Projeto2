@@ -6,12 +6,12 @@ import br.ufscar.dc.dsw.dao.TeatroDAO;
 import br.ufscar.dc.dsw.pojo.Promocao;
 import br.ufscar.dc.dsw.pojo.Site;
 import br.ufscar.dc.dsw.pojo.Teatro;
-import static com.sun.activation.registries.LogSupport.log;
 import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
+import static java.rmi.server.LogStream.log;
 
 @ManagedBean
 @SessionScoped
@@ -48,7 +48,7 @@ public class PromocaoBean implements Serializable{
         for (Promocao promos : promocoes) {
             if ((promos.getSite().equals(promocao.getSite()))|| (promos.getTeatro().equals(promocao.getTeatro()))) {
                 if ((promos.getDia().equals(promocao.getDia()))&& (promos.getHorario().equals(promocao.getHorario()))){
-                    erro = "Error!";
+                    erro = "Data e horário já cadastrado";
                     return "form.xhtml";
                 }
             }
@@ -103,4 +103,5 @@ public class PromocaoBean implements Serializable{
         promocoes = dao.getByTeatro(id);
         return "/promocao/promocoesteatro.xhtml";
     }
+
 }

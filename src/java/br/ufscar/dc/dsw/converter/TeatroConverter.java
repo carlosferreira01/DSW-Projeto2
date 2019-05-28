@@ -7,7 +7,7 @@ package br.ufscar.dc.dsw.converter;
 
 import br.ufscar.dc.dsw.dao.TeatroDAO;
 import br.ufscar.dc.dsw.pojo.Teatro;
-import static com.sun.activation.registries.LogSupport.log;
+import static java.rmi.server.LogStream.log;
 import javax.faces.convert.FacesConverter;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

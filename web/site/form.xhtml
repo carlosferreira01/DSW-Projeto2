@@ -6,7 +6,7 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui">  
     <h:head>  
-        <title>Formulário: Site</title>
+        <title>#{msg['site.form.page.title']}</title>
         <link rel="stylesheet" 
               href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
               integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
@@ -17,48 +17,49 @@
             <div class="form-group">  
                 <div class="col-sm-4"></div>  
                 <div  class="col-sm-4">  
-                    <h2 style="text-align: center">Dados</h2>  
+                    <h2 style="text-align: center">#{msg['geral.form.label']}</h2>  
                 </div>  
             </div>  
             <hr/>  
             <div class="form-group">  
-                <h:outputLabel for="title" class="control-label col-sm-4">Nome</h:outputLabel>  
+                <h:outputLabel for="title" class="control-label col-sm-4">#{msg['site.name.label']}</h:outputLabel>  
                 <div class="col-sm-4">  
                     <h:inputText id="title-id" value="#{siteBean.site.nome}" class="form-control"   
-                                 validatorMessage="Nome é obrigatório">
+                                 validatorMessage="#{msg['site.name.required.message']}">
                         <f:validateRequired/>
                     </h:inputText>  
                 </div>  
             </div> 
             <div class="form-group">  
-                <h:outputLabel for="url" class="control-label col-sm-4">URL</h:outputLabel>  
+                <h:outputLabel for="url" class="control-label col-sm-4">#{msg['site.url.label']}</h:outputLabel>  
                 <div class="col-sm-4">  
                     <h:inputText id="url-id" value="#{siteBean.site.url}" class="form-control"   
-                                 validatorMessage="URL é obrigatório">
+                                 validatorMessage="#{msg['site.url.required.message']}">
                         <f:validateRequired/>
                     </h:inputText>  
                 </div>  
             </div>
             <div class="form-group">  
-                <h:outputLabel for="telefone" class="control-label col-sm-4">Telefone</h:outputLabel>  
+                <h:outputLabel for="telefone" class="control-label col-sm-4">#{msg['site.fone.label']}</h:outputLabel>  
                 <div class="col-sm-4">  
                     <p:inputMask id="telefone" value="#{siteBean.site.telefone}" class="form-control"   
                                  mask="(99)99999-9999"
-                                 validatorMessage="Telefone é obrigatório"/>
+                                 validatorMessage="#{msg['site.fone.required.message']}"/>
                 </div>  
             </div>
             <div class="form-group">  
-                <h:outputLabel for="email" class="control-label col-sm-4">Email</h:outputLabel>  
+                <h:outputLabel for="email" class="control-label col-sm-4">#{msg['geral.email.label']}</h:outputLabel>  
                 <div class="col-sm-4">  
                     <p:inputText id="email" value="#{siteBean.site.email}" class="form-control"
-                                 validatorMessage="Email é obrigatório"/>
+                                 validatorMessage="#{msg['geral.email.required.message']}"/>
                 </div>  
             </div>   
             <div class="form-group">  
-                <h:outputLabel for="senha" class="control-label col-sm-4">Senha</h:outputLabel>  
+                <h:outputLabel for="senha" class="control-label col-sm-4">#{msg['geral.password.label']}</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <p:inputText id="senha" value="#{siteBean.site.senha}" class="form-control"  
-                                 validatorMessage="Senha é obrigatória"/>
+                    <p:inputText id="senha" value="#{siteBean.site.senha}" class="form-control"
+                                 type="password"
+                                 validatorMessage="#{msg['geral.password.required.message']}"/>
                 </div>  
             </div>   
             <div class="form-group">  
@@ -70,7 +71,7 @@
                     </div>  
                     <br/> 
                     <div class="col-sm-2">  
-                        <h:link outcome="index" value="Lista de Sites" class="btn btn-success" />  
+                        <h:link outcome="index" value="#{msg['site.list.command.label']}" class="btn btn-success" />  
                     </div>  
                 </div>  
             </div>  

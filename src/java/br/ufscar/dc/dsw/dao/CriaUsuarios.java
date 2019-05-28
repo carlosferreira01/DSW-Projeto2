@@ -49,7 +49,7 @@ public class CriaUsuarios {
         
         //teatro pra teste
         
-        Teatro t = new Teatro();
+        /*Teatro t = new Teatro();
         t.setNome("TeatroA");
         t.setCNPJ("11111111");
         t.setCidade("São carlos");
@@ -79,8 +79,9 @@ public class CriaUsuarios {
         Papel p4 = new Papel();
         p4.setNome("ROLE_SITE");
         papelDAO.save(p4);
-
+        
         s.getPapel().add(p4);
         siteDAO.update(s);
+*/
     }
 }
