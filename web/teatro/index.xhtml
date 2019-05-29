@@ -52,6 +52,11 @@
                     </h:commandButton>  
                 </h:column>  
             </h:dataTable>
+            <br/>
+            <center>
+                <h:commandButton action = "#{teatroBean.verCidades()}"   
+                                 value="Ver por cidades" class="btn btn-primary"></h:commandButton>
+            </center>
             <center>
                 <h:commandButton action = "#{teatroBean.cadastra()}"   
                                  value="#{msg['teatro.create.command.label']}" class="btn btn-primary"></h:commandButton>
