@@ -61,6 +61,12 @@
                     </sec:authorize>
                  
             </h:dataTable>
+            <br/>
+            <center>
+                <h:commandButton action = "#{teatroBean.verCidades()}"   
+                                 value="Ver por cidades" class="btn btn-primary"></h:commandButton>
+            </center>
+            <br/>
             <center>
                 <sec:authorize ifAllGranted="ROLE_ADMIN">
                     <h:commandButton action = "#{teatroBean.cadastra()}"   
