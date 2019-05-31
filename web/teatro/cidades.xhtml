@@ -28,6 +28,12 @@
                     </h:commandButton>  
                 </h:column>
             </h:dataTable>
+            <br/>
+            <center>
+                <h:commandButton action = "#{teatroBean.volta()}"   
+                                 value="#{msg['root.back.label']}" class="btn btn-success"></h:commandButton>
+            </center>
+            <br/>
         </h:form>  
     </h:body>  
 </html> 
