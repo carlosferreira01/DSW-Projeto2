@@ -12,8 +12,33 @@
               crossorigin="anonymous"/>
         <h:outputStylesheet name="/css/estilo.css"/>
     </h:head>  
-    <h:body>  
+
+    <h:body> 
+
         <h:form>  
+
+
+            <center>  
+                <h2><h:outputText value="#{msg['teatro.view']}"/></h2>
+
+                <div class="form-group">   
+                    <div class="col-sm-4">
+                        <h:selectOneMenu id="cidade" value="#{teatroBean.cidadeEscolhida}">
+                            <f:selectItems value="#{teatroBean.getCidades()}"/>
+                            <!--<f:converter converterId="SiteConverter" />-->
+                        </h:selectOneMenu>
+                    </div>  
+                </div>
+
+
+                <h:commandButton action = "#{teatroBean.getTeatrosCidade()}"   
+                                 value="OK" class="btn btn-primary"></h:commandButton>
+
+            </center>
+            <br/>
+
+
+
             <center>  
                 <h2><h:outputText value="#{msg['teatro.list.page.title']}"/></h2>  
             </center>  
@@ -40,7 +65,7 @@
                     <h:commandButton action = "#{promocaoBean.getPromocoesTeatro(teatro.id)}" value="Ver Promoções" class="btn btn-primary">  
                     </h:commandButton>  
                 </h:column>
-                  
+
                 <sec:authorize ifAllGranted="ROLE_ADMIN">
                     <h:column>
                         <f:facet name="header"></f:facet>  
@@ -48,19 +73,25 @@
                         </h:commandButton>
                     </h:column> 
                 </sec:authorize>
-                 
-                 
-                    <sec:authorize ifAllGranted="ROLE_ADMIN">
-                        <h:column> 
+
+
+                <sec:authorize ifAllGranted="ROLE_ADMIN">
+                    <h:column> 
                         <f:facet name="header"></f:facet>  
                         <h:commandButton action = "#{teatroBean.delete(teatro)}" value="#{msg['geral.delete.command.label']}" 
                                          onclick="return confirm('#{msg['confirm.delete']}');"
                                          class="btn btn-danger">  
                         </h:commandButton>  
-                        </h:column> 
-                    </sec:authorize>
-                 
+                    </h:column> 
+                </sec:authorize>
+
             </h:dataTable>
+            <br/>
+            <center>
+                <h:commandButton action = "#{teatroBean.lista()}"   
+                                 value="Ver todos os teatros" class="btn btn-primary"></h:commandButton>
+            </center>
+            <br/>
             <center>
                 <sec:authorize ifAllGranted="ROLE_ADMIN">
                     <h:commandButton action = "#{teatroBean.cadastra()}"   
