@@ -52,14 +52,14 @@
                     <h:outputText value="#{promocao.teatro}"/>  
                 </h:column>
                 <h:column>  
-                    <sec:authorize ifAllGranted="ROLE_ADMIN">
+                    <sec:authorize ifAllGranted="ROLE_TEATRO">
                         <f:facet name="header"></f:facet>  
                         <h:commandButton action = "#{promocaoBean.edita(promocao.id)}" value="#{msg['geral.edit.command.label']}" class="btn btn-primary">  
                         </h:commandButton>  
                     </sec:authorize>
                 </h:column>  
                 <h:column>  
-                    <sec:authorize ifAllGranted="ROLE_ADMIN">
+                    <sec:authorize ifAllGranted="ROLE_TEATRO">
                         <f:facet name="header"></f:facet>  
                         <h:commandButton action = "#{promocaoBean.delete(promocao)}" value="#{msg['geral.delete.command.label']}" 
                                          onclick="return confirm('#{msg['confirm.delete']}');"

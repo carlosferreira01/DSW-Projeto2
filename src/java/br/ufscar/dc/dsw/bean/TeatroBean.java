@@ -15,6 +15,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SessionScoped
 public class TeatroBean implements Serializable {
 
+    private String cidadeEscolhida;
+
+    public String getCidadeEscolhida() {
+        return cidadeEscolhida;
+    }
+
+    public void setCidadeEscolhida(String cidadeEscolhida) {
+        this.cidadeEscolhida = cidadeEscolhida;
+    }
     private Teatro teatro;
     private List<Teatro> teatros;
     private static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -85,9 +94,9 @@ public class TeatroBean implements Serializable {
         return dao.getCidades();
     }
 
-    public String getTeatros(String cidade) throws SQLException {
+    public String getTeatrosCidade() throws SQLException {
         TeatroDAO dao = new TeatroDAO();
-        teatros = dao.getByCity(cidade);
+        teatros = dao.getByCity(cidadeEscolhida);
         return "index.xhtml";
     }
 }
