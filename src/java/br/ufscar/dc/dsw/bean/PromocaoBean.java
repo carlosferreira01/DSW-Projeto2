@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import static java.rmi.server.LogStream.log;
+import static java.time.Clock.system;
 
 @ManagedBean
 @SessionScoped
@@ -48,7 +49,7 @@ public class PromocaoBean implements Serializable{
         for (Promocao promos : promocoes) {
             if ((promos.getSite().equals(promocao.getSite()))|| (promos.getTeatro().equals(promocao.getTeatro()))) {
                 if ((promos.getDia().equals(promocao.getDia()))&& (promos.getHorario().equals(promocao.getHorario()))){
-                    erro = "Data e horário já cadastrado";
+                    erro = "Error!";
                     return "form.xhtml";
                 }
             }
